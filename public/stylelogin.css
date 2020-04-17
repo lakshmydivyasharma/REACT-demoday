@@ -1,0 +1,52 @@
+.container{
+  color: white;
+  background-color: #2e3842;
+  font-family: 'Oswald', sans-serif;
+  margin-top: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.fa {
+  color: #ffffff;
+  font-size: 3rem;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+.btn-warning{
+  background-color: transparent;
+  font-size: 15px;
+  color: #af7ee4;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 32px;
+  padding-right: 32px;
+  border: 2px solid white;
+}
+
+.btn-warning:hover{
+  background: #ffffff;
+}
+
+a{
+  color: #ffffff;
+}
+
+h3{
+  text-align: left;
+  font-size: 2rem;
+}
+
+h3 span i{
+  margin-top: 50px;
+  margin-left: 220px;
+  font-size: 2rem;
+  color: #ffffff;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 4000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}

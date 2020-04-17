@@ -1,0 +1,88 @@
+.container{
+  color: white;
+  background-color: #2e3842;
+  font-family: 'Oswald', sans-serif;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 400px;
+  text-align: center;
+}
+
+.col-sm-6{
+  width: 100%;
+}
+
+.btn-default{
+  background-color: transparent;
+  color: #af7ee4;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 32px;
+  padding-right: 32px;
+  border: 2px solid white;
+}
+
+.message{
+  list-style-type: none;
+}
+
+h1, h3{
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+form input{
+  background-color: #2e3842;
+}
+
+button, .btn{
+  color: #af7ee4;
+}
+/*
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Banner */
+
+	body.is-preload #banner h2 {
+		-moz-transform: none;
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none;
+		opacity: 1;
+	}
+
+		body.is-preload #banner h2:before, body.is-preload #banner h2:after {
+			width: 100%;
+		}
+
+	body.is-preload #banner .more {
+		-moz-transform: none;
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none;
+		opacity: 1;
+	}
+
+	body.is-preload #banner:after {
+		opacity: 0;
+	}
+
+
+  h3{
+    text-align: left;
+    font-size: 2rem;
+  }
+
+  h3 span i{
+    margin-top: 50px;
+    margin-left: 220px;
+    font-size: 2rem;
+    color: #ffffff;
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+  }
