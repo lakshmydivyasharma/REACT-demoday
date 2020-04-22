@@ -15,16 +15,30 @@ module.exports = function(app, passport, db) {
     res.render('index.ejs');
   });
 
-  // PROFILE SECTION =========================
-  app.get('/profile', isLoggedIn, function(req, res) {
+  // OLD PROFILE SECTION, PROFILE 0; USED THIS TILL APRIL 21ST =========================
+  app.get('/profile0', isLoggedIn, function(req, res) {
     db.collection('messages').find().toArray((err, result) => { //callback function
       if (err) return console.log(err)
-      res.render('profile.ejs', {
+      res.render('profile0.ejs', {
         user : req.user, // this is the data object we are passing to the template
         messages: result // array of messages that we are looking in the database
       })
     })
   });
+
+
+// NEW PROFILE ROUTE WITH MARK STARTING APRIL 21ST NIGHT
+app.get('/profile', isLoggedIn, function(req, res) {
+  db.collection('report').find({username: req.user.local.email}).toArray((err, result) => { //callback function
+    if (err) return console.log(err)
+    res.render('profile.ejs', {
+      user : req.user, // this is the data object we are passing to the template
+      reports : result // array of messages that we are looking in the database
+    })
+  })
+});
+
+
 
   // LOGOUT ==============================
   app.get('/logout', function(req, res) {
@@ -127,10 +141,12 @@ module.exports = function(app, passport, db) {
 
 
   app.put('/lab', (req, res) => {
+    console.log('lab put')
+    console.log(req.body)
     db.collection('messages')
   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, { //find the one by searching for the ID; req.body.id --> when we call the API, the molecule.js, whatever we pass in as a body is going to be like an object it hsould have the idea and thats where the request comes from
       $set: {
-        smiles:req.body.smiles // same as line 131, basically an object like id and smart. search forr rdb entrey and smart to update database entry
+        molfile:req.body.molfile // same as line 131, basically an object like id and smart. search forr rdb entrey and smart to update database entry
       }
     }, (err, result) => {
       console.log(result)
@@ -138,6 +154,32 @@ module.exports = function(app, passport, db) {
       res.send(result)
     })
   })
+
+
+  // route to render the report
+  app.get('/render/:id', function(req, res) {
+    const id = req.params.id //got the id off the request
+    db.collection('report').findOne( // gave us all the data that the ID refers to
+      { _id: new ObjectID(id) } // object literals
+    ).then((result) => {    //write .then after you do the function call .then is also a function
+      console.log(result)
+      res.render('render.ejs', { report: result}) //return the property from the fineOne function LAB INFO GOT SWITCHED TO RESULT BC OF LINE 135
+
+    }).catch (err => console.log(err))
+  });
+
+  // route to EDIT the report, will also need ID of report
+  app.get('/edit/:id', function(req, res) {
+    const id = req.params.id //got the id off the request
+    db.collection('report').findOne( // gave us all the data that the ID refers to
+      { _id: new ObjectID(id) } // object literals
+    ).then((result) => {    //write .then after you do the function call .then is also a function
+      console.log(result)
+      res.render('edit.ejs', { report: result}) //return the property from the fineOne function LAB INFO GOT SWITCHED TO RESULT BC OF LINE 135
+
+    }).catch (err => console.log(err))
+  });
+
 }
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
